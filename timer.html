@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" ng-app="timers">
+<head>
+	<meta charset="UTF-8">
+	<title>Timer</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
+	<script src="javascripts/timer.js"></script>
+</head>
+<body>
+	<button id="create">Создать</button>
+	<div id="timers" ng-controller="TimerController as timer">
+		<div class="timer-wrapper" ng-repeat="clock in timer.products">
+			<h1>{{clock.name}}</h1>
+			<p>0</p>
+			<button>Remove</button>
+			<button>Stop</button>
+			<button>Start</button>
+			<button>Pause</button>
+		</div>
+	</div>
+
+
+</body>
+</html>
