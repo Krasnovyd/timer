@@ -1,20 +1,39 @@
 (function(){
 	"use strict";
 
-	var gems = [
-		{ name: 'Azurite', price: 2.95 },
-		{ name: 'Bloodstone', price: 5.95 },
-		{ name: 'Zircon', price: 3.95 },
-	];
-	var app = angular.module('timers', []);
+	var app = angular.module('timersPack', []);
 
-	app.controller('TimerController', function($scope){
-		this.products = gems;
+	app.controller('TimerController', function($scope, dateFilter){
+		$scope.sorted = "time";
+		$scope.timers = [
+			{ name: 'Azurite', time: "1" },
+			{ name: 'Bloodstone555', time: "555" },
+			{ name: 'Zircon', time: "3" }
+		];
+
+		$scope.addTimer = function(){
+			this.timers.push({name: 'Timer-' + ($scope.timers.length + 1), time: 2});
+		}
+		$scope.removeTimer = function(timerToRemove){
+			var index = this.timers.indexOf(timerToRemove);
+			this.timers.splice(index, 1);
+		}
+		$scope.pauseTimer = function(){
+			
+		}
+		$scope.startTimer = function(timerToStart){
+			var index = this.timers.indexOf(timerToStart)
+			this.timers[index].time = dateFilter(new Date(), "h:mm:ss");
+		}
+		$scope.stopTimer = function(){
+			
+		}
 	});
 
+})();
 
 
-	function Timer(elem){
+/*	function Timer(elem){
 		var timers = elem;
 		this.counter;
 		this.isStart = false;
@@ -93,4 +112,4 @@
 			}
 		});
 	};
-})();
+})();*/
