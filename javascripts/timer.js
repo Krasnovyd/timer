@@ -13,7 +13,7 @@
 				$scope.sorting = "time";
 			}
 			this.addTimer = function(){
-				that.timers.push({name: "Timer", time: dateFilter(new Date(0,0,0), "mm:ss")});
+				that.timers.push({name: "Timer", time: new Date(0,0,0).getMilliseconds()});
 			}
 			this.removeTimer = function(timerToRemove){
 				var index = that.timers.indexOf(timerToRemove);
@@ -22,10 +22,10 @@
 			}
 			this.startTimer = function(timerToStart){
 				var index = this.timers.indexOf(timerToStart),
-					startTime = new Date();
+					startTime = that.timers[index].time === 0 ? Date.now() : Date.now() - that.timers[index].time;
 				if(!that.timers[index].timerId){
 					that.timers[index].timerId = $interval(function(){
-						that.timers[index].time = dateFilter((new Date() - startTime), "mm:ss");
+						that.timers[index].time = Date.now() - startTime;
 					}, 1000);
 				}	
 			}
@@ -37,7 +37,7 @@
 			this.stopTimer = function(timerToStop){
 				var index = this.timers.indexOf(timerToStop);
 				$interval.cancel(that.timers[index].timerId);
-				that.timers[index].time = dateFilter(new Date(0,0,0), "mm:ss");
+				that.timers[index].time = new Date(0,0,0).getMilliseconds();
 				that.timers[index].timerId = undefined;
 			}
 	}]);

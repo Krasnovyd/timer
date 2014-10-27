@@ -12,7 +12,7 @@
 	<div id="timers">
 		<div class="timer-wrapper" ng-repeat="values in timer.timers | orderBy:sorting:reverse = true | limitTo: 20">
 			<h1>{{values.name}}</h1>
-			<p>{{values.time}}</p>
+			<p>{{values.time | date: "mm:ss"}}</p>
 			<button ng-click="timer.removeTimer(values)">Remove</button>
 			<button ng-click="timer.stopTimer(values)">Stop</button>
 			<button ng-click="timer.startTimer(values)">Start</button>
